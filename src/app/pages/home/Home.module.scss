@@ -1,0 +1,22 @@
+// @mixin 是 Sass 中的一个关键字，用于创建可重用的 CSS 样式规则。
+// 通过使用 @mixin，可以创建一组 CSS 样式规则，然后在需要的地方通过 @include 将这组样式规则应用到需要的选择器上。
+// 这样可以避免重复编写相同的 CSS 样式规则，提高样式代码的可维护性和可重用性。
+@mixin container {
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  @include container();
+}
+
+.window-content {
+  width: var(--window-content-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
