@@ -18,12 +18,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import AppsIcon from "@mui/icons-material/Apps";
 import { useDynamicTitle } from "@/utils/titleUtils";
-import { Pages } from "@/app/constants";
+import { Pages, Path } from "@/app/constants";
 // icons
 import HomeIcon from "@mui/icons-material/Home";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ReportIcon from "@mui/icons-material/Report";
+import { useNavigate } from "react-router-dom";
 
 const pageIcons = {
   [Pages.Home]: <HomeIcon />,
@@ -119,6 +120,7 @@ const Drawer = styled(MuiDrawer, {
 
 export function Sidebar() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const dynamicTitle = useDynamicTitle();
 
@@ -152,12 +154,11 @@ export function Sidebar() {
           <Typography variant="h6" noWrap component="div">
             {dynamicTitle}
           </Typography>
-          
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <Typography noWrap component="div" sx={{fontWeight: "bold"}}>
+          <Typography noWrap component="div" sx={{ fontWeight: "bold" }}>
             {"Dynamic-Thread-Pool"}
           </Typography>
           <IconButton onClick={handleDrawerClose}>
@@ -186,6 +187,12 @@ export function Sidebar() {
                         justifyContent: "center",
                       },
                 ]}
+                onClick={() => {
+                  // 根据页面切换路径
+                  if (page === Pages.Home) navigate(Path.Home);
+                  if (page === Pages.ThreadPool) navigate(Path.Pools);
+                  // 其他页面逻辑可以根据需要添加
+                }}
               >
                 <ListItemIcon
                   sx={[

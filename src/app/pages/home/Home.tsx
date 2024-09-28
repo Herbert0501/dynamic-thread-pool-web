@@ -14,6 +14,7 @@ import {
 import dynamic from "next/dynamic";
 import { Box } from "@mui/material";
 
+const Welcome = dynamic(async () => (await import("../welcome/Welcome")).Welcome);
 const Auth = dynamic(async () => (await import("../auth/Auth")).Auth);
 const Pools = dynamic(async () => (await import("../pools/Pools")).Pools);
 function Screen() {
@@ -34,7 +35,7 @@ function Screen() {
           {/* 路由地址 */}
           <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3.65rem" }}>
             <Routes>
-              <Route path={Path.Home} element={<Pools />} />
+              <Route path={Path.Home} element={<Welcome />} />
               <Route path={Path.Pools} element={<Pools />}></Route>
             </Routes>
           </Box>

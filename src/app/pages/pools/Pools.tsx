@@ -295,7 +295,7 @@ export function Pools() {
   );
 
   return (
-    <Box className={styles["pools-container"]} sx={{ p: 2 }}>
+    <Box className={styles["pools-container"]} sx={{ p: 2}}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           {autoRefresh ? (
@@ -391,6 +391,7 @@ export function Pools() {
       </Dialog>
 
       <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
