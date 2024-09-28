@@ -1,4 +1,4 @@
-export interface ThreadPoolConfigEntity {
+export interface ThreadPoolEntity {
   /**
    * 应用名称
    */

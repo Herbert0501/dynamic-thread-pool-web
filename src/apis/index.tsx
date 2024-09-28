@@ -1,5 +1,5 @@
 import { useAccessStore } from "@/app/stores/access";
-import { ThreadPoolConfigEntity } from "@/types/thread_pool";
+import { ThreadPoolEntity } from "@/types/thread_pool";
 
 const apiHostUrl = "http://localhost:8089";
 
@@ -92,7 +92,7 @@ export const queryThreadPoolConfig = (
  * @throws 如果网络响应状态不好（即HTTP状态码不在200-299范围内），则抛出一个错误
  */
 export const updateThreadPoolConfig = async (
-  config: ThreadPoolConfigEntity
+  config: ThreadPoolEntity
 ): Promise<string> => {
   // 构造请求的URL
   const url = `${apiHostUrl}/api/v1/dynamic/thread/pool/update_thread_pool_config`;

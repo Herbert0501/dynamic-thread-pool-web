@@ -1,8 +1,9 @@
 "use client";
 
-import styles from "./Home.module.scss";
+// import styles from "./Home.module.scss";
 import { Path } from "@/app/constants";
 import { useAccessStore } from "@/app/stores/access";
+import { Sidebar } from "@/app/components/sidebar/Sidebar";
 
 import {
   HashRouter as Router,
@@ -11,30 +12,33 @@ import {
   useLocation,
 } from "react-router-dom";
 import dynamic from "next/dynamic";
-import Pools from "../pools/Pools";
+import { Box } from "@mui/material";
 
 const Auth = dynamic(async () => (await import("../auth/Auth")).Auth);
+const Pools = dynamic(async () => (await import("../pools/Pools")).Pools);
 function Screen() {
   const access = useAccessStore();
   const location = useLocation();
   const isAuthPath = location.pathname === "/auth";
   const isAuthorized = access.isAuthorized();
+  
   return (
     <div>
       {isAuthPath || !isAuthorized ? (
         <Auth />
       ) : (
-        <>
+        <Box sx={{ display: "flex" }}>
           {/* 工具菜单 */}
-          {/* <Sidebar /> */}
+          <Sidebar />
 
           {/* 路由地址 */}
-          <div className={styles["window-content"]}>
+          <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3.65rem" }}>
             <Routes>
               <Route path={Path.Home} element={<Pools />} />
+              <Route path={Path.Pools} element={<Pools />}></Route>
             </Routes>
-          </div>
-        </>
+          </Box>
+        </Box>
       )}
     </div>
   );
