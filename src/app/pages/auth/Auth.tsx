@@ -58,7 +58,11 @@ export function Auth() {
         <Reset index={2} onClick={handleReset}>
           重置
         </Reset>
-        <Title visible={false} />
+        <Title visible={true} style={{color:"#6192A6"}}>
+          <a target="_blank" href="https://github.com/Herbert0501/dynamic-thread-pool-web">
+            DynamicTP-Herbert0501
+          </a>
+        </Title>
         <Logo>
           <LoginLogo />
         </Logo>
