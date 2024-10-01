@@ -11,3 +11,6 @@ export enum Pages {
   Settings = "设置",
   Report = "报告",
 }
+
+// 从环境变量获取
+export const grafanaUrl = process.env.GRAFANA_URL || "";
