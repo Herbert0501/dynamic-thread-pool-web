@@ -191,6 +191,7 @@ export function Sidebar() {
                   // 根据页面切换路径
                   if (page === Pages.Home) navigate(Path.Home);
                   if (page === Pages.ThreadPool) navigate(Path.Pools);
+                  if (page === Pages.Monitor) navigate(Path.Monitor);
                   // 其他页面逻辑可以根据需要添加
                 }}
               >

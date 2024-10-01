@@ -14,15 +14,19 @@ import {
 import dynamic from "next/dynamic";
 import { Box } from "@mui/material";
 
-const Welcome = dynamic(async () => (await import("../welcome/Welcome")).Welcome);
+const Welcome = dynamic(
+  async () => (await import("../welcome/Welcome")).Welcome
+);
 const Auth = dynamic(async () => (await import("../auth/Auth")).Auth);
 const Pools = dynamic(async () => (await import("../pools/Pools")).Pools);
+const Monitor = dynamic(async () => (await import("../monitors/Monitor")).Monitor);
+
 function Screen() {
   const access = useAccessStore();
   const location = useLocation();
   const isAuthPath = location.pathname === "/auth";
   const isAuthorized = access.isAuthorized();
-  
+
   return (
     <div>
       {isAuthPath || !isAuthorized ? (
@@ -33,10 +37,14 @@ function Screen() {
           <Sidebar />
 
           {/* 路由地址 */}
-          <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3.65rem" }}>
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, p: 3, marginTop: "3.65rem" }}
+          >
             <Routes>
-              <Route path={Path.Home} element={<Welcome />} />
+              <Route path={Path.Home} element={<Welcome />}></Route>
               <Route path={Path.Pools} element={<Pools />}></Route>
+              <Route path={Path.Monitor} element={<Monitor />}></Route>
             </Routes>
           </Box>
         </Box>

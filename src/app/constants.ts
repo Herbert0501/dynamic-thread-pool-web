@@ -1,6 +1,7 @@
 export enum Path {
   Home = "/",
   Pools = "/pools",
+  Monitor = "/monitor",
 }
 
 export enum Pages {

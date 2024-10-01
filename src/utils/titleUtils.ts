@@ -6,6 +6,8 @@ import { Path, Pages } from "@/app/constants";
 const titles: { [key in Path]?: string } = {
   [Path.Home]: Pages.Home,
   [Path.Pools]: Pages.ThreadPool,
+  [Path.Monitor]: Pages.Monitor,
+  // 其他路径可以根据需要添加
 };
 
 /**
