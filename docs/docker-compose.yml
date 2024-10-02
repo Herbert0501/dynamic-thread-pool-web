@@ -2,7 +2,7 @@ version: "3"
 services:
   dynamic-thread-pool-web:
     container_name: dynamic-thread-pool-web
-    image: registry.cn-heyuan.aliyuncs.com/coding_01/dynamic-thread-pool-web:1.2
+    image: registry.cn-heyuan.aliyuncs.com/coding_01/dynamic-thread-pool-web:1.3
     build:
       context: .
       dockerfile: Dockerfile

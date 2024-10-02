@@ -1,1 +1,1 @@
-docker build -t kangyaocoding/dynamic-thread-pool-web:1.2 .
+docker build -t kangyaocoding/dynamic-thread-pool-web:1.3 .
