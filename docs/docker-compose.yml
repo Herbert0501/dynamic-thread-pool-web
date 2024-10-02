@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dynamic-thread-pool-web:
+    container_name: dynamic-thread-pool-web
+    image: registry.cn-heyuan.aliyuncs.com/coding_01/dynamic-thread-pool-web:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+      - GRAFANA_URL=http://172.18.0.7:4000/d/cdvvy9felux34e/e58aa8-e68081-e7babf-e7a88b-e6b1a0-e79b91-e68ea7?orgId=2&refresh=5s&theme=light
+    volumes:
+      - ./data:/app/data
+    networks:
+      - 1panel-network
+
+networks:
+  1panel-network:
+    external: true
