@@ -1,7 +1,8 @@
 import { useAccessStore } from "@/app/stores/access";
 import { ThreadPoolEntity } from "@/types/thread_pool";
 
-const apiHostUrl = "http://localhost:8089";
+const apiHostUrl = process.env.DYNAMIC_APP_API_HOST || "";
+// const apiHostUrl = "http://localhost:8089";
 
 /**
  * 获取请求头信息

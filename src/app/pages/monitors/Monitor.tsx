@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Alert } from "@mui/material";
-import { grafanaUrl } from "@/app/constants";
 
-// const grafanaUrl = "http://192.168.59.129:3000/d/cdvvy9felux34e/e58aa8-e68081-e7babf-e7a88b-e6b1a0-e79b91-e68ea7?orgId=2&refresh=5s&theme=light";
-
+// 从环境变量获取
+export const grafanaUrl = process.env.GRAFANA_URL || "";
 export function Monitor() {
   return (
     <Box
