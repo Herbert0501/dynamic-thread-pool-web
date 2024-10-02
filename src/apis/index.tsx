@@ -1,7 +1,7 @@
 import { useAccessStore } from "@/app/stores/access";
 import { ThreadPoolEntity } from "@/types/thread_pool";
 
-const apiHostUrl = process.env.DYNAMIC_APP_API_HOST || "";
+const apiHostUrl = process.env.REACT_APP_DYNAMIC_HOST || "";
 // const apiHostUrl = "http://localhost:8089";
 
 /**

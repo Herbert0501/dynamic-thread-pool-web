@@ -1,11 +1,7 @@
 import React from "react";
 import { Box, Alert } from "@mui/material";
-import { log } from "console";
 
-// 从环境变量获取
-export const grafanaUrl = process.env.GRAFANA_URL || "";
-log(grafanaUrl);
-
+const grafanaUrl = process.env.REACT_APP_GRAFANA_URL || "";
 export function Monitor() {
   return (
     <Box
@@ -29,9 +25,7 @@ export function Monitor() {
           }}
         />
       ) : (
-        <Alert severity="warning">
-          Grafana URL为空，请检查配置！
-        </Alert>
+        <Alert severity="warning">Grafana URL为空，请检查配置！</Alert>
       )}
     </Box>
   );
