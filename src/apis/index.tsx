@@ -120,3 +120,19 @@ export const updateThreadPoolConfig = async (
   // 返回响应中的状态码
   return data.code;
 };
+
+
+/**
+ * 查询Grafana URL的函数
+ * 
+ * @returns {Promise} 返回一个Promise对象，包含请求的结果
+ */
+export const queryGrafanaUrl = () => {
+  return fetch(
+    `${apiHostUrl}/api/v1/dynamic/thread/pool/get_grafana_url`,
+    {
+      method: "get",
+      headers: getHeaders(),
+    }
+  );
+};
