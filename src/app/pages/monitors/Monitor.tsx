@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Alert } from "@mui/material";
 import { queryGrafanaUrl } from "@/apis";
+import { useAccessStore } from "@/app/stores/access";
 
 export function Monitor() {
   const [grafanaUrl, setGrafanaUrl] = useState<string>("");
@@ -15,7 +16,9 @@ export function Monitor() {
         // 判断返回结果是否成功
         if (result.code === "0000") {
           setGrafanaUrl(result.data); // 设置获取到的 Grafana URL
-        } else {
+        } else if (result.code === "0003") {
+          useAccessStore.getState().goToLogin();
+        }else {
           setError(`操作失败: ${result.info || "未知错误"}`);
         }
       } catch (err: unknown) {
