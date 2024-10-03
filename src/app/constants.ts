@@ -10,4 +10,5 @@ export enum Pages {
   Monitor = "监控界面",
   Settings = "设置",
   Report = "报告",
+  Logout = "登出",
 }

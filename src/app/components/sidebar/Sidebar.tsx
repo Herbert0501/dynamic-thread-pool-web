@@ -24,7 +24,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ReportIcon from "@mui/icons-material/Report";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import { useAccessStore } from "@/app/stores/access";
 
 const pageIcons = {
   [Pages.Home]: <HomeIcon />,
@@ -32,6 +34,7 @@ const pageIcons = {
   [Pages.Monitor]: <MonitorIcon />,
   [Pages.Settings]: <SettingsIcon />,
   [Pages.Report]: <ReportIcon />,
+  [Pages.Logout]: <LogoutIcon />,
 };
 
 const drawerWidth = 240;
@@ -192,6 +195,16 @@ export function Sidebar() {
                   if (page === Pages.Home) navigate(Path.Home);
                   if (page === Pages.ThreadPool) navigate(Path.Pools);
                   if (page === Pages.Monitor) navigate(Path.Monitor);
+                  if (page === Pages.Logout) {
+                    // 弹出确认框
+                    const confirmLogout =
+                      window.confirm("您确定要退出登录吗？");
+
+                    if (confirmLogout) {
+                      // 退出登录
+                      useAccessStore.getState().goToLogin();
+                    }
+                  }
                   // 其他页面逻辑可以根据需要添加
                 }}
               >
