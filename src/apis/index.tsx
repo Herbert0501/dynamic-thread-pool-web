@@ -125,14 +125,33 @@ export const updateThreadPoolConfig = async (
 /**
  * 查询Grafana URL的函数
  * 
- * @returns {Promise} 返回一个Promise对象，包含请求的结果
+ * @returns {Promise} 返回包含请求结果信息的Promise对象
  */
-export const queryGrafanaUrl = () => {
-  return fetch(
-    `${apiHostUrl}/api/v1/dynamic/thread/pool/get_grafana_url`,
-    {
-      method: "get",
-      headers: getHeaders(),
+export const queryGrafanaUrl = async () => {
+  try {
+    const response = await fetch(
+      `${apiHostUrl}/api/v1/dynamic/thread/pool/get_grafana_url`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      }
+    );
+
+    // 检查请求是否成功
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  );
+
+    // 解析响应的JSON数据
+    const result = await response.json();
+    
+    // 返回数据
+    return result;
+
+  } catch (error) {
+    // 捕获错误并处理
+    console.error("Error fetching Grafana URL:", error);
+    throw error; 
+  }
 };
+

@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Alert } from "@mui/material";
+import { queryGrafanaUrl } from "@/apis";
 
-const grafanaUrl = process.env.REACT_APP_GRAFANA_URL || "";
 export function Monitor() {
+  const [grafanaUrl, setGrafanaUrl] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // 定义异步函数以获取 Grafana URL
+    const fetchGrafanaUrl = async () => {
+      try {
+        const result = await queryGrafanaUrl();
+
+        // 判断返回结果是否成功
+        if (result.code === "0000") {
+          setGrafanaUrl(result.data); // 设置获取到的 Grafana URL
+        } else {
+          setError(`操作失败: ${result.info || "未知错误"}`);
+        }
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(`请求失败: ${err.message}`);
+        } else {
+          setError("请求失败，发生未知错误。");
+        }
+      }
+    };
+
+    fetchGrafanaUrl();
+  }, []); // 空数组表示仅在组件挂载时运行
+
   return (
     <Box
       sx={{
@@ -12,7 +39,9 @@ export function Monitor() {
         height: "100vh",
       }}
     >
-      {grafanaUrl ? (
+      {error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : grafanaUrl ? (
         <Box
           component="iframe"
           src={grafanaUrl}
@@ -25,7 +54,7 @@ export function Monitor() {
           }}
         />
       ) : (
-        <Alert severity="warning">Grafana URL为空，请检查配置！</Alert>
+        <Alert severity="warning">正在加载 Grafana URL...</Alert>
       )}
     </Box>
   );
