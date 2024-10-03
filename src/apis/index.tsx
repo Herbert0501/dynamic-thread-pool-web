@@ -17,9 +17,11 @@ function getHeaders() {
 
   // 构建请求头对象
   const headers = {
-    Authorization: accessState.token, // 授权令牌
+    Authorization: `Bearer ${accessState.token}`, // 授权令牌
     "Content-Type": "application/json;charset=utf-8",
   };
+  
+  console.log("headers", headers);
 
   return headers;
 }
@@ -121,10 +123,9 @@ export const updateThreadPoolConfig = async (
   return data.code;
 };
 
-
 /**
  * 查询Grafana URL的函数
- * 
+ *
  * @returns {Promise} 返回包含请求结果信息的Promise对象
  */
 export const queryGrafanaUrl = async () => {
@@ -144,14 +145,12 @@ export const queryGrafanaUrl = async () => {
 
     // 解析响应的JSON数据
     const result = await response.json();
-    
+
     // 返回数据
     return result;
-
   } catch (error) {
     // 捕获错误并处理
     console.error("Error fetching Grafana URL:", error);
-    throw error; 
+    throw error;
   }
 };
-
