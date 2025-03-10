@@ -1,8 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { login } from "@/apis";
-import { useNavigate } from "react-router-dom"; // 新增
-import { Path } from "@/app/constants"; // 新增
+import { Path } from "@/app/constants"; // 更新
 
 // 定义后端响应的类型
 interface LoginResponse {
@@ -28,8 +27,6 @@ export interface AccessControlStore {
 export const useAccessStore = create<AccessControlStore>()(
   persist(
     (set, get) => {
-      const navigate = useNavigate(); // 新增
-
       return {
         token: "",
         username: "",
@@ -51,7 +48,7 @@ export const useAccessStore = create<AccessControlStore>()(
           get().updateUsername("");
           get().updatePassword("");
           get().updateToken("");
-          navigate(Path.Login); // 新增
+          window.location.href = `${window.location.origin}#${Path.Login}`; // 更新
         },
         async login() {
           const { username, password } = get();
